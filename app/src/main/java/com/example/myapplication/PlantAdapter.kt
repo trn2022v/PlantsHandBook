@@ -8,16 +8,18 @@ import com.example.myapplication.databinding.PlantItemBinding
 
 class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
 
-    private val plantList = ArrayList<Plant>()
+     private val plantList = ArrayList<Plant>()
 
 
     class PlantHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         private val binding = PlantItemBinding.bind(item)
 
-        fun bind(plant: Plant) = with(binding) {
-            im.setImageResource(plant.imageId)
-            tvTitle.text = plant.title
+        fun bind(plant: Plant) {
+            binding.apply {
+                im.setImageResource(plant.imageId)
+                tvTitle.text = plant.title
+            }
 
         }
 
@@ -38,6 +40,11 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
 
     fun addPlant(plant: Plant) {
         plantList.add(plant)
+        notifyDataSetChanged()
+    }
+    fun refreshPlant(list: List<Plant>){
+        plantList.clear()
+        plantList.addAll(list)
         notifyDataSetChanged()
     }
 

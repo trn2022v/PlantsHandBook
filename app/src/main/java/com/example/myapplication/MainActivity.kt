@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        refresh()
 
     }
 
@@ -35,6 +36,16 @@ class MainActivity : AppCompatActivity() {
                 val plant = Plant(imageIdList[index], "Plant $index")
                 adapter.addPlant(plant)
                 index++
+            }
+        }
+    }
+
+    private fun refresh() {
+        binding.apply {
+            rcView.adapter = adapter
+            buttonRefresh.setOnClickListener {
+                val list = ArrayList<Plant>()
+                adapter.refreshPlant(list)
             }
         }
     }
