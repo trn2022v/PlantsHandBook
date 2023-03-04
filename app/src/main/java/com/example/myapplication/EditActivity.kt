@@ -7,7 +7,7 @@ import com.example.myapplication.databinding.ActivityEditBinding
 
 class EditActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityEditBinding
+    private lateinit var binding: ActivityEditBinding
     private var indexImage = 0
     private var imageId = R.drawable.plant1
     private val imageIdList = listOf(

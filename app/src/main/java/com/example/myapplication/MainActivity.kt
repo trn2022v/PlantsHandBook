@@ -12,7 +12,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val adapter = PlantAdapter()
     private var editLauncher: ActivityResultLauncher<Intent>? = null
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         binding.apply {
-            rcView.layoutManager = GridLayoutManager(this@MainActivity, 3)
+            rcView.layoutManager = GridLayoutManager(this@MainActivity, spanCount)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener {
                 editLauncher?.launch(Intent(this@MainActivity, EditActivity::class.java))
@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 adapter.refreshPlant(list)
             }
         }
+    }
+
+    companion object {
+        const val spanCount = 3
     }
 
 }
